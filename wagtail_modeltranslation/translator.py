@@ -5,7 +5,7 @@ from django.db.models import Manager, ForeignKey, OneToOneField
 from django.db.models.base import ModelBase
 from django.db.models.signals import post_init
 from django.utils.six import with_metaclass
-from wagtail.wagtailcore.models import Page
+from wagtail.core.models import Page
 from wagtail_modeltranslation import settings as mt_settings
 from wagtail_modeltranslation.fields import (NONE, create_translation_field, TranslationFieldDescriptor,
                                              TranslatedRelationIdDescriptor,
@@ -562,8 +562,8 @@ class Translator(object):
         Returns an instance of translation options with translated fields
         defined for the ``model`` and inherited from superclasses.
         """
-        if model._deferred:
-            model = model._meta.proxy_for_model
+#         if model._deferred:
+#             model = model._meta.proxy_for_model
         if model not in self._registry:
             # Create a new type for backwards compatibility.
             opts = type("%sTranslationOptions" % model.__name__,
